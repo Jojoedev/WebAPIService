@@ -6,7 +6,7 @@ using WebAPIService.Services;
 
 namespace WebAPIService.Controllers
 {
-    [Route("api")]
+    [Route("api/person")]
     [ApiController]
     
     public class PersonController : Controller
@@ -49,6 +49,7 @@ namespace WebAPIService.Controllers
         [HttpPost]
         public ActionResult<PersonDTO> CreateNew(PersonDTO personDTO)
         {
+            //Creating a new person
             Person person = new()
             {
                 Id = personDTO.Id,
@@ -72,11 +73,13 @@ namespace WebAPIService.Controllers
                 return NotFound();
             }
 
-
+            //Assigning the old person to a new person variable and infusing the updated obj into the new object.
+            Person p = new Person();
             Person personUpdate = person;
             personUpdate.FirstName = personDTO.FirstName;
             personUpdate.LastName = personDTO.LastName;
-            personUpdate.Address = personDTO.Address;               
+            personUpdate.Address = personDTO.Address;
+            _personInterface.Update(personUpdate.Id);
    
            return NoContent();
             

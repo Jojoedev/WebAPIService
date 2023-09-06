@@ -27,7 +27,8 @@ namespace WebAPIService.Services
         public Person GetPerson(int id)
         {
             return _context.Persons.FirstOrDefault(x => x.Id == id);
-           // return GetPersons().FirstOrDefault(x => x.Id == id);
+          
+            // return GetPersons().FirstOrDefault(x => x.Id == id);
         }
 
         public void Create(Person person)
@@ -40,7 +41,7 @@ namespace WebAPIService.Services
         public void Update(int id)
         {
             _context.Persons.Where(x => x.Id == id).FirstOrDefault();
-            _context.SaveChanges();
+            _context.SaveChanges(true); 
             //PersonDatabase.persons.Where(x => x.Id == id).FirstOrDefault();
         }
 
